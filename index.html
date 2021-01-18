@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>umm</title>
+
+</head>
+<body onload="startF()">
+    
+  <!--  <button onclick="startF()">문제내기</button> -->
+    <p id="prt"></p>
+   
+    <p id="time"></p>
+
+    <script>
+var tp=["진행 시간 ","시간","분","초","걸린 시간"];
+var ctf=0;
+var timer=[0,0,0];
+var c=0;
+ var cc=[[1,2,3],[4,5,6],[7,8,0]];
+ var ary=[[1,2,3],[4,6,0],[7,5,8]];
+ var s=" "
+ var ad=2;
+ var ws=1;
+ var t=0;
+window.addEventListener("keydown",(e)=>{
+    if(e.key=="w") { 
+        if(ws==0) {}
+        
+        else{
+        t=ary[ws][ad];
+        ws=ws-1;
+        ary[ws+1][ad]=ary[ws][ad];
+        ary[ws][ad]=t;
+        }
+        startF()
+    }
+
+    if(e.key=="a") { 
+        if(ad==0) {}
+        
+        else{
+        t=ary[ws][ad]
+        ad=ad-1;
+        ary[ws][ad+1]=ary[ws][ad];
+        ary[ws][ad]=t;
+        }
+        startF()
+     }
+
+    if(e.key=="s") {
+        if(ws==2) {}
+
+        else{
+        t=ary[ws][ad];
+        ws=ws+1;
+        ary[ws-1][ad]=ary[ws][ad];
+        ary[ws][ad]=t;
+        }
+        startF()
+     }
+
+    if(e.key=="d") { 
+        if(ad==2) {}
+
+        else{
+        t=ary[ws][ad]
+        ad=ad+1;
+        ary[ws][ad-1]=ary[ws][ad];
+        ary[ws][ad]=t;
+        }
+        startF()
+    }
+  for(i=0; i<3; i++)
+  {
+      for(k=0; k<3; k++)
+      {
+          if(ary[i][k]==cc[i][k])
+          {
+              c=c+1;
+          }
+          else{
+              c=0;
+          }
+          
+      }
+      if(c==9)
+      {
+          ctf=1;
+          document.write("clear!","<br>","<br>","<br>",tp[4]+" "+" "+timer[0]+" "+tp[1]+" "+timer[1]+" "+tp[2]+" "+timer[2]+" "+tp[3]);
+          
+      }
+     
+  }
+}
+)
+
+setInterval(function(){
+    if(ctf==1)
+    {
+        
+
+
+    }
+    else{
+       timer[2]=timer[2]+1;
+       if(timer[2]==60) { timer[1]=timer[1]+1; timer[2]=0; }
+       if(timer[1]==60) { timer[0]=timer[0]+1; timer[1]=0; }
+
+       document.querySelector("#time").innerHTML=tp[0]+" "+" "+timer[0]+" "+tp[1]+" "+timer[1]+" "+tp[2]+" "+timer[2]+" "+tp[3];
+    }
+
+        
+    }, 1000)
+
+        
+        function startF()
+        {   
+            
+            s=s+ary[0][0]+" "+ary[0][1]+" "+ary[0][2]+"<br>"+ary[1][0]+" "+ary[1][1]+" "+ary[1][2]+"<br>"+ary[2][0]+" "+ary[2][1]+" "+ary[2][2]+"<br>"+"<br>";
+            document.querySelector("#prt").innerHTML=s; 
+            s="";
+        }
+    
+
+
+    </script>
+    
+</body>
+</html>
